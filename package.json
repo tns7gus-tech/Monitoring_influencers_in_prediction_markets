@@ -1,0 +1,16 @@
+{
+  "name": "prediction-market-influencer-monitoring",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "sync": "node sync-polymarket.js",
+    "test": "node --test --test-isolation=none",
+    "test:e2e": "playwright test",
+    "test:qa": "npm test && npm run test:e2e"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

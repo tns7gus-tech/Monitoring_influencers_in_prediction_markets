@@ -1,0 +1,653 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Prediction Alpha Monitor turns public Polymarket trader activity into ranked signals, marketing-ready proof, watchlist alerts, and trade-backed backtests."
+    />
+    <meta name="theme-color" content="#0a86d8" />
+    <meta property="og:title" content="Prediction Alpha Monitor" />
+    <meta
+      property="og:description"
+      content="Track high-accuracy Polymarket traders, package conviction signals into premium alert products, and prove performance with trade-backed backtests."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Prediction Alpha Monitor</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <header class="topbar" aria-label="Top navigation">
+        <div class="topbar-brand">
+          <p class="eyebrow">Signal Product Infrastructure</p>
+          <h1>Prediction Alpha Monitor</h1>
+          <p class="topbar-meta" id="snapshot-meta" aria-live="polite">
+            Loading fallback dataset
+          </p>
+        </div>
+        <div class="topbar-end">
+          <div class="topbar-utility">
+            <button
+              class="ghost-button theme-toggle"
+              id="theme-toggle"
+              type="button"
+              aria-pressed="false"
+              aria-label="Switch to dark mode"
+            >
+              Theme: Light
+            </button>
+            <button
+              class="menu-toggle"
+              id="menu-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="topbar-actions-panel"
+              aria-label="Toggle navigation menu"
+            >
+              <span class="sr-only">Toggle navigation menu</span>
+              <span class="menu-toggle-bar" aria-hidden="true"></span>
+              <span class="menu-toggle-bar" aria-hidden="true"></span>
+              <span class="menu-toggle-bar" aria-hidden="true"></span>
+            </button>
+          </div>
+          <nav class="topbar-actions" id="topbar-actions-panel" aria-label="Primary actions">
+            <span class="badge">Built for research desks, signal rooms, and premium communities</span>
+            <button class="ghost-button" id="sync-button" type="button" aria-describedby="snapshot-meta">
+              Sync live data
+            </button>
+            <button class="ghost-button" type="button" data-scroll-target="leaderboard-section">
+              Explore signals
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="hero panel">
+          <div class="hero-copy">
+            <p class="eyebrow">Monetize trader intelligence</p>
+            <h2>Turn public prediction-market activity into premium alerts, sharper research, and marketing-ready proof.</h2>
+            <p class="hero-text">
+              Prediction Alpha Monitor ranks high-accuracy wallets, surfaces new conviction shifts, and packages the
+              output into watchlists, notification channels, market drill-downs, and trade-backed backtests you can use
+              in client demos, newsletters, or paid communities.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" type="button" data-scroll-target="account-section">
+                Start your workspace
+              </button>
+              <button class="secondary-button" type="button" data-scroll-target="watchlist-section">
+                Build your alert funnel
+              </button>
+            </div>
+          </div>
+          <div class="hero-grid" id="hero-grid" aria-label="Core summary metrics"></div>
+        </section>
+
+        <section class="proof-strip" aria-label="Product proof points">
+          <article class="proof-card">
+            <p class="eyebrow">Positioning</p>
+            <h3>Sell a clear edge</h3>
+            <p>Lead with ranked trader intelligence instead of generic market commentary.</p>
+          </article>
+          <article class="proof-card">
+            <p class="eyebrow">Retention</p>
+            <h3>Keep members engaged</h3>
+            <p>Route conviction alerts to Discord, Telegram, or webhooks the moment new activity appears.</p>
+          </article>
+          <article class="proof-card">
+            <p class="eyebrow">Proof</p>
+            <h3>Show the math</h3>
+            <p>Use trade-backed backtests and market drill-downs to support pricing, pitches, and renewals.</p>
+          </article>
+        </section>
+
+        <section class="panel positioning-section" aria-labelledby="positioning-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Built for go-to-market</p>
+              <h2 id="positioning-title">A prediction-market product that is easier to pitch, demo, and convert</h2>
+            </div>
+            <p class="section-note">
+              Shape the same data into research workflows, premium community content, or outbound-ready live demos.
+            </p>
+          </div>
+          <div class="positioning-grid">
+            <article class="positioning-card">
+              <h3>Research desks</h3>
+              <p>Spot crowding, conviction, and category rotation before the rest of the market narrative catches up.</p>
+            </article>
+            <article class="positioning-card">
+              <h3>Paid communities</h3>
+              <p>Package fresh wallet activity into a premium feed with saved watchlists and repeatable backtests.</p>
+            </article>
+            <article class="positioning-card">
+              <h3>Growth teams</h3>
+              <p>Use live signal examples, performance previews, and market detail screens in landing pages and demos.</p>
+            </article>
+            <article class="positioning-card">
+              <h3>Operators</h3>
+              <p>Push the same alert logic into Discord, Telegram, or generic webhook stacks without adding another tool.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="toolbar panel" aria-label="Trader filters">
+          <form class="toolbar-form" id="filter-form" novalidate>
+            <div class="field">
+              <label for="search-trader">Search traders</label>
+              <input
+                id="search-trader"
+                name="search"
+                type="search"
+                placeholder="Wallet, alias, or market keyword"
+                autocomplete="off"
+              />
+            </div>
+            <div class="field">
+              <label for="category-filter">Focus category</label>
+              <select id="category-filter" name="category">
+                <option value="all">All</option>
+              </select>
+            </div>
+            <fieldset class="chip-group" aria-labelledby="window-legend">
+              <legend id="window-legend">Evaluation window</legend>
+              <label class="chip">
+                <input type="radio" name="window" value="30" checked />
+                <span>30d</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="window" value="90" />
+                <span>90d</span>
+              </label>
+            </fieldset>
+          </form>
+        </section>
+
+        <section class="dashboard-grid">
+          <section class="panel side-panel" id="account-section" aria-labelledby="account-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Account</p>
+                <h2 id="account-title">Personal session</h2>
+              </div>
+              <p class="section-note">Watchlists, notification channels, and saved backtests are separated per signed-in user.</p>
+            </div>
+            <div id="auth-session" aria-live="polite"></div>
+            <div class="auth-forms" id="auth-forms">
+              <form class="stack-form" id="register-form" novalidate>
+                <div class="field">
+                  <label for="register-display-name">Display name</label>
+                  <input id="register-display-name" name="displayName" type="text" maxlength="32" required />
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="register-username">Username</label>
+                    <input
+                      id="register-username"
+                      name="username"
+                      type="text"
+                      maxlength="24"
+                      autocomplete="username"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="register-password">Password</label>
+                    <input
+                      id="register-password"
+                      name="password"
+                      type="password"
+                      minlength="8"
+                      maxlength="72"
+                      autocomplete="new-password"
+                      required
+                    />
+                  </div>
+                </div>
+                <button class="primary-button" type="submit">Create account and sign in</button>
+              </form>
+              <form class="stack-form" id="login-form" novalidate>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="login-username">Username</label>
+                    <input
+                      id="login-username"
+                      name="username"
+                      type="text"
+                      maxlength="24"
+                      autocomplete="username"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="login-password">Password</label>
+                    <input
+                      id="login-password"
+                      name="password"
+                      type="password"
+                      maxlength="72"
+                      autocomplete="current-password"
+                      required
+                    />
+                  </div>
+                </div>
+                <button class="secondary-button" type="submit">Sign in with existing account</button>
+              </form>
+            </div>
+            <p class="form-status" id="auth-status" aria-live="polite"></p>
+          </section>
+
+          <section class="panel main-panel" id="leaderboard-section" aria-labelledby="leaderboard-title">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Influencer leaderboard</p>
+                <h2 id="leaderboard-title">Top traders by forecast accuracy</h2>
+              </div>
+              <p class="section-note">
+                Forecast accuracy and sample reliability come first. ROI is shown as a reference signal only.
+              </p>
+            </div>
+            <div class="leaderboard-cards" id="leaderboard-cards" aria-live="polite"></div>
+            <div class="table-wrapper">
+              <table>
+                <caption class="sr-only">Top traders by forecast accuracy table</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Trader</th>
+                    <th scope="col">Forecast score</th>
+                    <th scope="col">90d accuracy</th>
+                    <th scope="col">Sample reliability</th>
+                    <th scope="col">Open positions</th>
+                    <th scope="col">Latest signal</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel side-panel" aria-labelledby="alerts-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Alerts</p>
+                <h2 id="alerts-title">Alerts</h2>
+              </div>
+              <button class="ghost-button small" id="read-alerts-button" type="button">
+                Mark all read
+              </button>
+            </div>
+            <ul class="alert-feed" id="alerts-feed" aria-live="polite"></ul>
+          </section>
+
+          <section class="panel side-panel" id="notification-section" aria-labelledby="notification-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Notification routing</p>
+                <h2 id="notification-title">Notification channels</h2>
+              </div>
+              <p class="section-note">After each live-data sync, new alerts are recorded as queued deliveries per channel.</p>
+            </div>
+            <form class="stack-form" id="notification-form" novalidate>
+              <div class="field">
+                <label for="notification-label">Channel name</label>
+                <input id="notification-label" name="label" type="text" maxlength="30" required />
+              </div>
+              <div class="field">
+                <label for="notification-type">Channel type</label>
+                <select id="notification-type" name="type">
+                  <option value="log_only">Log only</option>
+                  <option value="discord_webhook">Discord webhook</option>
+                  <option value="telegram_bot">Telegram bot</option>
+                  <option value="generic_webhook">Generic webhook</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="notification-webhook-url">Webhook URL</label>
+                <input
+                  id="notification-webhook-url"
+                  name="webhookUrl"
+                  type="url"
+                  inputmode="url"
+                  autocomplete="off"
+                  placeholder="https://... or mock://success"
+                />
+                <p class="field-hint">For Discord or generic webhooks. Use `mock://success` for a passing test and `mock://fail` for a failure case.</p>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="notification-bot-token">Telegram Bot Token</label>
+                  <input id="notification-bot-token" name="botToken" type="text" autocomplete="off" />
+                  <p class="field-hint">Use `mock` for testing.</p>
+                </div>
+                <div class="field">
+                  <label for="notification-chat-id">Telegram Chat ID</label>
+                  <input id="notification-chat-id" name="chatId" type="text" autocomplete="off" />
+                  <p class="field-hint">Use `mock` for testing.</p>
+                </div>
+              </div>
+              <label class="checkbox-row" for="notification-enabled">
+                <input id="notification-enabled" name="enabled" type="checkbox" checked />
+                <span>Enable immediately after save</span>
+              </label>
+              <button class="primary-button" type="submit">Save channel</button>
+              <p class="form-status" id="notification-status" aria-live="polite"></p>
+            </form>
+            <ul class="channel-list" id="notification-channels" aria-live="polite"></ul>
+            <div class="history-panel">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Delivery log</p>
+                  <h3>Recent delivery log</h3>
+                </div>
+              </div>
+              <ul class="delivery-feed" id="notification-deliveries" aria-live="polite"></ul>
+            </div>
+          </section>
+
+          <section class="panel main-panel" aria-labelledby="signals-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Signal feed</p>
+                <h2 id="signals-title">Recent position changes</h2>
+              </div>
+              <p class="section-note">Select an item to open the corresponding market drill-down.</p>
+            </div>
+            <ul class="signal-feed" id="signal-feed" aria-live="polite"></ul>
+          </section>
+
+          <section class="panel side-panel" aria-labelledby="market-radar-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Market radar</p>
+                <h2 id="market-radar-title">Priority markets</h2>
+              </div>
+            </div>
+            <div class="market-grid" id="market-grid" aria-live="polite"></div>
+          </section>
+
+          <section class="panel main-panel" id="market-detail-section" aria-labelledby="market-detail-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Market drill-down</p>
+                <h2 id="market-detail-title">Market detail</h2>
+              </div>
+              <p class="section-note">See participating traders, recent activity, and the last 1w price path for each market.</p>
+            </div>
+            <div class="market-detail" id="market-detail" aria-live="polite"></div>
+          </section>
+
+          <section class="panel side-panel" id="watchlist-section" aria-labelledby="watchlist-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Watchlist builder</p>
+                <h2 id="watchlist-title">Add watchlist wallet</h2>
+              </div>
+              <p class="section-note">Stored on the server and used as alert-generation rules on future syncs.</p>
+            </div>
+            <form class="stack-form" id="watchlist-form" novalidate>
+              <div class="field">
+                <label for="watch-label">Label</label>
+                <input id="watch-label" name="label" type="text" maxlength="24" required />
+                <p class="field-hint">2-24 characters. Use an internally recognizable name.</p>
+              </div>
+              <div class="field">
+                <label for="watch-wallet">Wallet address</label>
+                <input
+                  id="watch-wallet"
+                  name="wallet"
+                  type="text"
+                  inputmode="text"
+                  spellcheck="false"
+                  autocomplete="off"
+                  required
+                />
+                <p class="field-hint">Only 42-character EVM addresses starting with 0x are allowed.</p>
+              </div>
+              <div class="field">
+                <label for="watch-thesis">Tracking thesis</label>
+                <textarea id="watch-thesis" name="thesis" rows="3" maxlength="120" required></textarea>
+                <p class="field-hint">At least 10 characters. Briefly describe where this wallet has an edge.</p>
+              </div>
+              <div class="field-row three-up">
+                <div class="field">
+                  <label for="watch-min-size">Minimum trade size</label>
+                  <input id="watch-min-size" name="minSizeUsd" type="number" min="0" max="1000000" step="100" value="0" />
+                  <p class="field-hint">Only trades above this amount generate alerts.</p>
+                </div>
+                <div class="field">
+                  <label for="watch-min-score">Minimum forecast score</label>
+                  <input id="watch-min-score" name="minForecastScore" type="number" min="0" max="100" step="1" value="0" />
+                  <p class="field-hint">Only activity from traders above this score is considered.</p>
+                </div>
+                <div class="field">
+                  <label for="watch-alert-mode">Alert mode</label>
+                  <select id="watch-alert-mode" name="alertMode">
+                    <option value="all">All activity</option>
+                    <option value="high_conviction">High conviction only</option>
+                    <option value="new_entries_only">New entries only</option>
+                  </select>
+                  <p class="field-hint">Use this to narrow the feed to stronger insider-like signals.</p>
+                </div>
+              </div>
+              <div class="field-row three-up">
+                <div class="field">
+                  <label for="watch-market-category">Market category</label>
+                  <select id="watch-market-category" name="marketCategory">
+                    <option value="all">All categories</option>
+                    <option value="US Politics">US Politics</option>
+                    <option value="Global Politics">Global Politics</option>
+                    <option value="Crypto">Crypto</option>
+                    <option value="Macro">Macro</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Regulation">Regulation</option>
+                    <option value="General">General</option>
+                  </select>
+                  <p class="field-hint">Restrict alerts to activity within a specific market category.</p>
+                </div>
+                <div class="field">
+                  <label for="watch-side-filter">Position side</label>
+                  <select id="watch-side-filter" name="sideFilter">
+                    <option value="all">All sides</option>
+                    <option value="yes_only">YES only</option>
+                    <option value="no_only">NO only</option>
+                  </select>
+                  <p class="field-hint">Limit signals to a specific YES or NO market direction.</p>
+                </div>
+                <div class="field">
+                  <label for="watch-recent-hours">Recent N hours</label>
+                  <input id="watch-recent-hours" name="recentHours" type="number" min="0" max="168" step="1" value="0" />
+                  <p class="field-hint">Use 0 to keep the default 7-day window, or set a positive value to require fresher activity.</p>
+                </div>
+              </div>
+              <button class="primary-button" type="submit">Add to watchlist</button>
+              <p class="form-status" id="watchlist-status" aria-live="polite"></p>
+            </form>
+            <ul class="watchlist" id="watchlist"></ul>
+          </section>
+
+          <section class="panel main-panel" id="simulation-section" aria-labelledby="simulation-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Copy simulation</p>
+                <h2 id="simulation-title">Copy-trading simulator</h2>
+              </div>
+              <p class="section-note">Uses trade-backed backtests first and falls back to snapshot estimates if needed.</p>
+            </div>
+            <form class="stack-form" id="simulation-form" novalidate>
+              <div class="field">
+                <label for="simulation-trader">Trader</label>
+                <select id="simulation-trader" name="traderId" required></select>
+              </div>
+              <div class="field-row three-up">
+                <div class="field">
+                  <label for="simulation-latency">Entry delay (min)</label>
+                  <input
+                    id="simulation-latency"
+                    name="latencyMinutes"
+                    type="number"
+                    min="1"
+                    max="120"
+                    step="1"
+                    value="10"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="simulation-budget">Budget (USD)</label>
+                  <input
+                    id="simulation-budget"
+                    name="budget"
+                    type="number"
+                    min="25"
+                    max="100000"
+                    step="25"
+                    value="1000"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="simulation-min-trade-usd">Minimum trade size</label>
+                  <input
+                    id="simulation-min-trade-usd"
+                    name="minTradeUsd"
+                    type="number"
+                    min="0"
+                    max="100000"
+                    step="50"
+                    value="250"
+                  />
+                  <p class="field-hint">Only trades above this size are included in the backtest sample.</p>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="simulation-start-date">Start date</label>
+                  <div class="date-input-shell" data-date-field lang="en">
+                    <div class="date-input-row">
+                      <input
+                        id="simulation-start-date"
+                        name="startDate"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        spellcheck="false"
+                        placeholder="YYYY-MM-DD"
+                        aria-describedby="simulation-start-date-hint"
+                      />
+                      <button
+                        class="ghost-button small date-picker-trigger"
+                        type="button"
+                        data-date-target="simulation-start-date"
+                        aria-controls="simulation-start-date-panel"
+                        aria-expanded="false"
+                        aria-label="Open English calendar for start date"
+                      >
+                        Calendar
+                      </button>
+                      <button
+                        class="ghost-button small date-picker-clear"
+                        type="button"
+                        data-date-clear="simulation-start-date"
+                        aria-label="Clear start date"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                    <div class="date-picker-panel" id="simulation-start-date-panel" hidden aria-hidden="true"></div>
+                  </div>
+                  <p class="field-hint" id="simulation-start-date-hint">
+                    Leave blank to use the full available trade history. Use YYYY-MM-DD or the English calendar.
+                  </p>
+                </div>
+                <div class="field">
+                  <label for="simulation-end-date">End date</label>
+                  <div class="date-input-shell" data-date-field lang="en">
+                    <div class="date-input-row">
+                      <input
+                        id="simulation-end-date"
+                        name="endDate"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        spellcheck="false"
+                        placeholder="YYYY-MM-DD"
+                        aria-describedby="simulation-end-date-hint"
+                      />
+                      <button
+                        class="ghost-button small date-picker-trigger"
+                        type="button"
+                        data-date-target="simulation-end-date"
+                        aria-controls="simulation-end-date-panel"
+                        aria-expanded="false"
+                        aria-label="Open English calendar for end date"
+                      >
+                        Calendar
+                      </button>
+                      <button
+                        class="ghost-button small date-picker-clear"
+                        type="button"
+                        data-date-clear="simulation-end-date"
+                        aria-label="Clear end date"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                    <div class="date-picker-panel" id="simulation-end-date-panel" hidden aria-hidden="true"></div>
+                  </div>
+                  <p class="field-hint" id="simulation-end-date-hint">
+                    Entries after this date are excluded. Use YYYY-MM-DD or the English calendar.
+                  </p>
+                </div>
+              </div>
+              <div class="field">
+                <label for="simulation-mode">Exit rule</label>
+                <select id="simulation-mode" name="mode">
+                  <option value="follow_exit">Follow trader exit</option>
+                  <option value="hold_resolution">Hold to resolution</option>
+                </select>
+              </div>
+              <button class="primary-button" id="simulation-submit" type="submit">Run backtest and save</button>
+              <p class="form-status" id="simulation-status" aria-live="polite"></p>
+            </form>
+            <div class="simulation-output" id="simulation-output" aria-live="polite"></div>
+            <div class="history-panel">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Stored runs</p>
+                  <h3>Recent backtest history</h3>
+                </div>
+                <p class="section-note">Select a saved run to reload the same settings.</p>
+              </div>
+              <ul class="backtest-history" id="backtest-history" aria-live="polite"></ul>
+            </div>
+          </section>
+
+          <section class="panel side-panel" aria-labelledby="method-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Method</p>
+                <h2 id="method-title">Operating rules</h2>
+              </div>
+            </div>
+            <ol class="method-list">
+              <li>Collect official leaderboard candidates, then recompute forecast scores from closed positions.</li>
+              <li>Persist the current state in SQLite and support both manual sync and background scheduled sync.</li>
+              <li>Watchlist wallets receive filtered alerts based on category, YES/NO side, recent-hour window, minimum size, minimum score, and alert mode.</li>
+              <li>Market cards and the signal feed link directly to the drill-down view and recent 1w price chart.</li>
+            </ol>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
+
+
