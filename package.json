@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "main": "server.js",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",

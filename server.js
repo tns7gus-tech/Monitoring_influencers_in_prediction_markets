@@ -5,6 +5,7 @@ import { extname, join, normalize, resolve } from "node:path";
 import { createMonitorService } from "./src/monitor-service.js";
 
 const rootDir = resolve(".");
+const host = process.env.HOST || "0.0.0.0";
 const port = Number(process.env.PORT || 4173);
 const syncIntervalMs = Number(process.env.SYNC_INTERVAL_MS || 300000);
 const sessionCookieName = "prediction_alpha_session";
@@ -470,12 +471,15 @@ const server = createServer(async (request, response) => {
   }
 });
 
-process.on("SIGINT", () => {
+function shutdown() {
   service.close();
   server.close(() => process.exit(0));
-});
+}
 
-server.listen(port, () => {
-  console.log(`Prediction market monitor is available at http://127.0.0.1:${port}`);
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);
+
+server.listen(port, host, () => {
+  console.log(`Prediction market monitor is available at http://${host}:${port}`);
   console.log(`Background sync interval: ${Math.round(syncIntervalMs / 60000)} minute(s)`);
 });
